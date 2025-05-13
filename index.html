@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shopping Mall Bill Receipt</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Shopping Mall Bill Receipt</h2>
+
+    <div class="form-grid">
+      <div>
+        <label>Customer Name</label>
+        <input type="text" id="customerName" placeholder="Enter customer name" />
+      </div>
+
+      <div>
+        <label>Mobile Number</label>
+        <input type="text" id="mobileNumber" placeholder="Enter 10-digit mobile number" pattern="[6-9]{1}[0-9]{9}" maxlength="10" />
+      </div>
+
+      <div>
+        <label>Bill Number</label>
+        <input type="text" id="billNo" placeholder="Auto-generated" readonly />
+      </div>
+
+      <div>
+        <label>Date</label>
+        <input type="date" id="billDate" readonly />
+      </div>
+
+      <div>
+        <label>Payment Mode</label>
+        <select id="paymentMode" onchange="togglePaymentDetails()">
+          <option value="Cash">Cash</option>
+          <option value="Card">Card</option>
+          <option value="UPI">UPI</option>
+        </select>
+      </div>
+
+      <div id="cardDetails" class="hidden-field">
+        <label>Card Number</label>
+        <input type="text" placeholder="Enter last 4 digits" maxlength="4" />
+      </div>
+
+      <div id="upiDetails" class="hidden-field">
+        <label>UPI ID</label>
+        <input type="text" placeholder="example@upi" />
+      </div>
+    </div>
+
+    <table id="itemTable">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Qty</th>
+          <th>Price</th>
+          <th>GST %</th>
+          <th>GST Amt</th>
+          <th>Total</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <div class="actions">
+      <button class="add-item" onclick="addItem()">+ Add Item</button>
+    </div>
+
+    <div class="summary">
+      <p><strong>Total GST:</strong> ₹<span id="totalGST">0.00</span></p>
+      <p><strong>Grand Total:</strong> ₹<span id="grandTotal">0.00</span></p>
+    </div>
+
+    <div class="generate-wrapper">
+      <button class="generate" onclick="generateReceipt()">Generate Receipt</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
